@@ -44,12 +44,9 @@ class Option {
 
     printSummary(){
         console.log(`---${this.symbol}---${this.expiration}`);
-        console.log('Call: ');
-        console.log(`Strike ${this.call.strike}   Price ${this.call.price}  IV ${this.call.iv}`);
-        console.log();
-        console.log('Put: ');
-        console.log(`Strike ${this.put.strike}   Price ${this.put.price}  IV ${this.put.iv}`);
-        console.log();
+        console.log(`Call:   strike ${this.call.strike}   price ${this.call.price}  IV ${this.call.iv}`);
+        console.log(`Put:    strike ${this.put.strike}    price ${this.put.price}  IV ${this.put.iv}`);
+
     }
 }
 

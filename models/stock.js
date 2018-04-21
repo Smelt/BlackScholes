@@ -32,7 +32,7 @@ class Stock {
     printSummary(){
         console.log(`-------${this.symbol}--@${this.price}------------------`);
         console.log(`Institutional investors:  ${this.data.heldInstitutions * 100}%`);
-        console.log(`Shares short percent of float:  ${this.data.shortRatio * 100}%`);
+        console.log(`Shares short percent of float:  ${this.data.shortRatio}%`);
         console.log(`Beta: ${this.data.beta}`);
         console.log('--------------------------------------------------------');
     }
