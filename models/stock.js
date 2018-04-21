@@ -2,6 +2,7 @@ class Stock {
 
     constructor(symbol){
         this.symbol = symbol;
+        this.data = {};
     }
 
     getPrice(){
@@ -14,6 +15,26 @@ class Stock {
 
     setPrice(price){
         this.price = price;
+    }
+
+    setHeldInstitutions(heldInstitutions){
+        this.data.heldInstitutions = heldInstitutions;
+    }
+
+    setSharesShort(shortRatio){
+        this.data.shortRatio = shortRatio;
+    }
+
+    setBeta(beta){
+        this.data.beta = beta;
+    }
+
+    printSummary(){
+        console.log(`-------${this.symbol}--@${this.price}------------------`);
+        console.log(`Institutional investors:  ${this.data.heldInstitutions * 100}%`);
+        console.log(`Shares short percent of float:  ${this.data.shortRatio * 100}%`);
+        console.log(`Beta: ${this.data.beta}`);
+        console.log('--------------------------------------------------------');
     }
 }
 
