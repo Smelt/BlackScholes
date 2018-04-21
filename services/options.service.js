@@ -3,28 +3,20 @@ const finance = require('finance');
 const Option = require('../models/option.js');
 
 
+//extract option data from Yahoo finance
 module.exports.getOptionData = function (option) {
-
     const opts = {
-        symbol: option.getSymbol(),
         expirationDate: option.getExpiration(),
-        stockPrice: option.getStockPrice()
+        symbol: option.getSymbol()
     }
-
-    console.log(opts.stockPrice);
-    console.log(opts.symbol);
-    /*
     finance.optionchain.getOptionChainFromYahoo(opts, function (err, quotes) {
-        console.log(option);
-        console.log(quotes);
-        //findClosestMoney(option, quotes);
-    });
-    */
+        findClosestMoney(option, quotes);
+    });   
 }
 
 
 //formats and prints key primary data this will later be used to calculate Vega
-let printKeyData = function (stock) {
+function printKeyData(stock) {
     console.log(`Institutional investors:  ${stock.heldPercentInstitutions.fmt}`);
     console.log(`Shares short percent of float:  ${stock.shortRatio.fmt}`);
     console.log(`Beta: ${stock.beta.raw}`);
@@ -32,8 +24,7 @@ let printKeyData = function (stock) {
 }
 
 
-
-let findClosestMoney = function (option, quotes) {
+function findClosestMoney(option, quotes) {
     //prints the closests in the money call
     quotes.calls.forEach((call) => {
         if (call.strike == option.getStockPrice()) {

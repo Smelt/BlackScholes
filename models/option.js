@@ -13,7 +13,6 @@ class Option {
     getSymbol(){
         return this.symbol;
     }
-    
 
     setCall(price){
         this.call = price;
