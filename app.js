@@ -49,7 +49,7 @@ function printKeyData(stock) {
   console.log(`Institutional investors:  ${stock.heldPercentInstitutions.fmt}`);
   console.log(`Shares short percent of float:  ${stock.shortRatio.fmt}`);
   console.log(`Beta: ${stock.beta.raw}`);
-  console.log();
+  console.log('--------------');
 }
 
 //
