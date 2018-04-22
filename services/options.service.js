@@ -12,7 +12,7 @@ module.exports.getOptionData = function (option) {
     finance.optionchain.getOptionChainFromYahoo(opts, function (err, quotes) {
         const op = findClosestMoney(option, quotes);
         option.printSummary();
-        return op;
+        return option;
     });   
 }
 
