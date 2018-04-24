@@ -9,13 +9,13 @@ module.exports.getOptionData = async function (option) {
         expirationDate: option.getExpiration(),
         symbol: option.getSymbol()
     }
-    await finance.optionchain.getOptionChainFromYahoo(opts, function (err, quotes) {
+    
+    return new Promise(function(resolve,reject){        
+    finance.optionchain.getOptionChainFromYahoo(opts, function (err, quotes) {
        option = findClosestMoney(option, quotes); 
-        //console.log(quotes);
-        console.log(option);
-        return option;
+        resolve(option);
     });
-
+})
 }
 
 async function findClosestMoney(option, quotes) {

@@ -19,12 +19,9 @@ async function run(ticker, price, date){
   let stock = new Stock(ticker);
   stock.setPrice(price);
   stock = await stockService.getStockData(stock);
-  stock.printSummary();
-  //let option = new Option(stock.getSymbol(), stock.getPrice(), date);
-  //option =  await optionService.getOptionData(option);
-  //console.log(option);
- // console.log(option);
- // option.printSummary();
+  let option = new Option(stock.getSymbol(), stock.getPrice(), date);
+  option =  await optionService.getOptionData(option);
+  option.printSummary();
 }
 
 
