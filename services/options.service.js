@@ -4,19 +4,22 @@ const Option = require('../models/option.js');
 
 
 //extract option data from Yahoo finance
-module.exports.getOptionData = function (option) {
+module.exports.getOptionData = async function (option) {
     const opts = {
         expirationDate: option.getExpiration(),
         symbol: option.getSymbol()
     }
-    finance.optionchain.getOptionChainFromYahoo(opts, function (err, quotes) {
-        const op = findClosestMoney(option, quotes);
-        option.printSummary();
+    await finance.optionchain.getOptionChainFromYahoo(opts, function (err, quotes) {
+       option = findClosestMoney(option, quotes); 
+        //console.log(quotes);
+        console.log(option);
         return option;
-    });   
+    });
+
 }
 
-function findClosestMoney(option, quotes) {
+async function findClosestMoney(option, quotes) {
+   // console.log(quotes);
     quotes.calls.forEach((call) => {
         if (call.strike == option.getStockPrice()) {
             option.setCall(call.strike, call.lastPrice, call.impliedVolatility);
@@ -27,7 +30,7 @@ function findClosestMoney(option, quotes) {
             option.setPut(put.strike, put.lastPrice, put.impliedVolatility);
         }
     });
-
+    return option;
 }
 
 
