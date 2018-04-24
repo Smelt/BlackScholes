@@ -8,19 +8,20 @@ const Option = require('./models/option');
 
 
 run('aapl', 165, '2018-05-11');
-
+/*
 setTimeout(function(){
   console.log();
   run('fb', 165, '2018-05-11');
 }, 1200 );
 
-
-function run(ticker, price, date){
+*/
+async function run(ticker, price, date){
   let stock = new Stock(ticker);
   stock.setPrice(price);
-  stockService.getStockData(stock);
+  stock = await stockService.getStockData(stock);
   let option = new Option(stock.getSymbol(), stock.getPrice(), date);
-  option = optionService.getOptionData(option);
+  option =  await optionService.getOptionData(option);
+  option.printSummary();
 }
 
 
