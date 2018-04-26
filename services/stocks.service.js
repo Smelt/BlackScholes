@@ -11,6 +11,9 @@ module.exports.getStockData = async function (stock) {
     const [inst, realTime] = await Promise.all([institutionalData(stockParam), getCurrData(stockParam.symbol)]);
     console.log(inst);
     console.log(realTime);
+    stock[inst] = inst;
+    stock[realTime] = realTime;
+    console.log(JSON.stringify(stock));
    // stock.setHeldInstitutions(inst.heldPercentInstitutions.raw);
    // stock.setSharesShort(inst.shortRatio.raw);
   //  stock.setBeta(inst.beta.raw);
