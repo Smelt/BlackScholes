@@ -8,14 +8,10 @@ const Option = require('./models/option');
 
 const finance = require('finance');
 
-run('aapl', 165, '2018-05-11');
-/*
-setTimeout(function(){
-  console.log();
-  run('amzn', 1460, '2018-05-11');
-}, 1200 );
+//run('aapl', 165, '2018-05-11');
+stockService.getCurrData('aapl');
 
-*/
+
 async function run(ticker, price, date){
   let stock = new Stock(ticker);
   stock.setPrice(price);

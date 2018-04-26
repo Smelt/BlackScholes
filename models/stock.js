@@ -1,5 +1,7 @@
-class Stock {
+const stockService = require('../services/stocks.service');
 
+class Stock {
+    
     constructor(symbol){
         this.symbol = symbol;
         this.data = {};
