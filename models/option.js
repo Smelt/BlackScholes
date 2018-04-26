@@ -46,6 +46,9 @@ class Option {
         console.log(`---${this.symbol}---${this.expiration}`);
         console.log(`Call:   strike ${this.call.strike}   price ${this.call.price}  IV ${this.call.iv}`);
         console.log(`Put:    strike ${this.put.strike}    price ${this.put.price}  IV ${this.put.iv}`);
+        let avg = (this.call.price + this.put.price)/2;
+        let vol = avg / this.stockPrice;
+        console.log(`Volatility: ${vol * 100}% `);
 
     }
 }
