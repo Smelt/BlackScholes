@@ -4,19 +4,14 @@ const yahoo = require('yahoo-nasdaq');
 const request = require('request');
 
 module.exports.getStockData = async function (stock) {
-    console.log("l----");
     const stockParam = {
         symbol: stock.getSymbol()
     }
-    const [inst, realTime] = await Promise.all([institutionalData(stockParam), getCurrData(stockParam.symbol)]);
-    console.log(inst);
-    console.log(realTime);
+    const [inst, realTime] = await Promise.all([institutionalData(stockParam), getRealTimeData(stockParam.symbol)]);
     stock[inst] = inst;
     stock[realTime] = realTime;
-    console.log(JSON.stringify(stock));
-   // stock.setHeldInstitutions(inst.heldPercentInstitutions.raw);
-   // stock.setSharesShort(inst.shortRatio.raw);
-  //  stock.setBeta(inst.beta.raw);
+    //console.log(realTime);
+    return stock;
 }
 
 function institutionalData(stockParam) {
@@ -39,12 +34,12 @@ function institutionalData(stockParam) {
     })
 }
 
-function getCurrData(ticker) {
+function getRealTimeData(ticker) {
     return new Promise(function (resolve, reject) {
         const uri = `https://api.iextrading.com/1.0/stock/${ticker}/batch?`;
         request({
             qs: {
-                'types': 'quote,news,chart'
+                'types': 'quote,news'
             },
             uri: uri,
             method: 'GET'

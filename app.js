@@ -16,7 +16,8 @@ run('aapl', 165, '2018-05-11');
 async function run(ticker, price, date){
   let stock = new Stock(ticker);
   stock.setPrice(price);
-  stock = stockService.getStockData(stock);
+  await stockService.getStockData(stock);
+  console.log(JSON.stringify(stock));
   /*
   let option = new Option(stock.getSymbol(), stock.getPrice(), date);
   option =  await optionService.getOptionData(option);
