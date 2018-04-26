@@ -17,7 +17,6 @@ setTimeout(function(){
 
 */
 async function run(ticker, price, date){
-  console.log("Run");
   let stock = new Stock(ticker);
   stock.setPrice(price);
   stock = await stockService.getStockData(stock);
