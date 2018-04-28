@@ -8,12 +8,15 @@ const Stock = require('./models/stock');
 const Option = require('./models/option');
 const Crypto = require('./models/crypto');
 const finance = require('finance');
-
+const rma = require('./scheduler/rma');
 
 
 //run('aapl', 165, '2018-05-11');
 //stockService.getCurrData('aapl');
-testCrypto('BTC');
+//testCrypto('BTC');
+
+let bitcoin = new Crypto('BTC');
+rma.nodeSchedule(bitcoin, 1);
 
 //console.log(am);
 async function testCrypto(symbol){

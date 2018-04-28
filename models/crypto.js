@@ -5,6 +5,8 @@ class Crypto {
     constructor(symbol){
         this.symbol = symbol;
         this.data = {};
+        this.getSymbol = this.getSymbol.bind(this);
+        this.refreshData = this.refreshData.bind(this);
     }
 
     getPrice(){
@@ -25,6 +27,7 @@ class Crypto {
 
     async refreshData(){
         this.price = await cryptoService.getCryptoPrice(this.symbol);
+        
     }
 }
 
