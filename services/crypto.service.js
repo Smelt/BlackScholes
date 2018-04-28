@@ -6,7 +6,7 @@ module.exports.getCryptoPrice = async function(symbol){
         const uri = `https://min-api.cryptocompare.com/data/price?`;
         request({
             qs: {
-                'fsym': 'BTC',
+                'fsym': symbol,
                 'tsyms': 'USD'
             },
             uri: uri,
