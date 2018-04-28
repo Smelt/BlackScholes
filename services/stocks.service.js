@@ -34,12 +34,24 @@ function institutionalData(stockParam) {
     })
 }
 
-function getRealTimeData(ticker) {
+module.exports.getStockData = function(ticker, quote = false, news = false) {
+    let types = '';
+    if(news){
+        types = 'quote';
+    }
+    if(quote){
+        if(news){
+            types = 'quote,news';
+        }
+        else {
+            types = 'quote'
+        }
+    }
     return new Promise(function (resolve, reject) {
         const uri = `https://api.iextrading.com/1.0/stock/${ticker}/batch?`;
         request({
             qs: {
-                'types': 'quote,news'
+                'types': types
             },
             uri: uri,
             method: 'GET'
