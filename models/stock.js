@@ -31,6 +31,15 @@ class Stock {
         this.data.beta = beta;
     }
 
+    async refreshPrice(){
+       const data = await stockService.getStockData(this.symbol, true, false );
+       this.price = data.quote.latestPrice;
+    }
+
+    async refreshMarketData(){
+        this.marketData = await stockService.getStockData(this.symbol, true);
+    }
+
     printSummary(){
         console.log(`-------${this.symbol}--@${this.price}------------------`);
         console.log(`Institutional investors:  ${this.data.heldInstitutions * 100}%`);
