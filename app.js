@@ -9,6 +9,14 @@ const Option = require('./models/option');
 const Crypto = require('./models/crypto');
 const finance = require('finance');
 const rma = require('./scheduler/rma');
+const stockTests = require('./tests/stock.test');
+
+
+
+
+
+stockTests.stockPrice('aapl');
+
 
 
 //run('aapl', 165, '2018-05-11');
@@ -17,6 +25,10 @@ const rma = require('./scheduler/rma');
 
 let bitcoin = new Crypto('BTC');
 rma.nodeSchedule(bitcoin, 3);
+let ethereum = new Crypto('ETH');
+rma.nodeSchedule(ethereum, 3);
+
+
 
 //console.log(am);
 async function testCrypto(symbol){
@@ -26,16 +38,6 @@ async function testCrypto(symbol){
 }
 
 
-async function run(ticker, price, date){
-  let stock = new Stock(ticker);
-  stock.setPrice(price);
-  await stockService.getStockData(stock);
-  console.log(JSON.stringify(stock));
-  let option = new Option(stock.getSymbol(), stock.getPrice(), date);
-  option =  await optionService.getOptionData(option);
-  console.log(option);
-  option.printSummary();
-}
 
 
 
