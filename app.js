@@ -16,7 +16,7 @@ const rma = require('./scheduler/rma');
 //testCrypto('BTC');
 
 let bitcoin = new Crypto('BTC');
-rma.nodeSchedule(bitcoin, 1);
+rma.nodeSchedule(bitcoin, 3);
 
 //console.log(am);
 async function testCrypto(symbol){
