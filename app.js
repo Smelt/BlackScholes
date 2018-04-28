@@ -23,8 +23,6 @@ async function testCrypto(symbol){
 }
 
 
-
-
 async function run(ticker, price, date){
   let stock = new Stock(ticker);
   stock.setPrice(price);
