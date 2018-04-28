@@ -13,10 +13,10 @@ module.exports.nodeSchedule = async function(ao, time){
     }
 
     rules.forEach((rule) => {
-        schedule.scheduleJob(rule, function(time){
+        schedule.scheduleJob(rule, async function(time){
             //console.log(asset);
-            asset.refreshData();
-            console.log(asset.getPrice());
+            await asset.refreshData();
+            console.log(`${asset.getSymbol()} ${asset.getPrice()} @${time}`);
         })
     })
     //console.log(asset);
