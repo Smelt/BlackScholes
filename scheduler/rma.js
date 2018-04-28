@@ -1,5 +1,5 @@
 const schedule = require('node-schedule');
-const Crypto   = require('../models/crypto.js');
+
 
 
 module.exports.nodeSchedule = async function(asset, interval){
@@ -13,7 +13,6 @@ module.exports.nodeSchedule = async function(asset, interval){
 
     rules.forEach((rule) => {
         schedule.scheduleJob(rule, async function(time){
-            //console.log(asset);
             await asset.refreshPrice();
             console.log(`${asset.getSymbol()} ${asset.getPrice()} @${time}`);
         })
@@ -22,6 +21,3 @@ module.exports.nodeSchedule = async function(asset, interval){
 }
 
 
-async function cryptoRoutine(asset){
-    console.log(asset);
-}
