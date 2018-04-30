@@ -15,6 +15,10 @@ class Stock {
         return this.symbol;
     }
 
+    getNews(){
+        return this.news;
+    }
+
     setPrice(price){
         this.price = price;
     }
@@ -32,8 +36,14 @@ class Stock {
     }
 
     async refreshPrice(){
-       const data = await stockService.getStockData(this.symbol, true, false );
+       const data = await stockService.getQuoteNews(this.symbol, true, false );
        this.price = data.quote.latestPrice;
+    }
+
+    async refreshNews(){
+        const data = await stockService.getQuoteNews(this.symbol, false, true);
+        //console.log(data);
+        this.news = data.news;
     }
 
     async refreshMarketData(){

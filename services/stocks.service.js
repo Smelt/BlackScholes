@@ -3,7 +3,7 @@ const finance = require('finance');
 const yahoo = require('yahoo-nasdaq');
 const request = require('request');
 
-module.exports.getStockData = async function (stock) {
+module.exports.getFullData = async function (stock) {
     const stockParam = {
         symbol: stock.getSymbol()
     }
@@ -34,10 +34,10 @@ function institutionalData(stockParam) {
     })
 }
 
-module.exports.getStockData = function(ticker, quote = false, news = false) {
+module.exports.getQuoteNews = function(ticker, quote = false, news = false) {
     let types = '';
     if(news){
-        types = 'quote';
+        types = 'news';
     }
     if(quote){
         if(news){
