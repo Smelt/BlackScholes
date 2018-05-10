@@ -10,22 +10,22 @@ const Crypto = require('./models/crypto');
 const finance = require('finance');
 const rma = require('./scheduler/rma');
 const stockTests = require('./tests/stock.test');
+const OptionTest = require('./tests/option.test');
 
+//stockTests.stockPrice('aapl');
+//let apple = new Stock('aapl');
 
-stockTests.stockPrice('aapl');
-let apple = new Stock('aapl');
+OptionTest.test('aapl', 187, '2018-05-18');
 
-run();
-
-async function run(){
-await apple.refreshNews();
-const news = apple.getNews();
-news.forEach(element => {
-  console.log(element.headline)
-  console.log(element.summary);
-  console.log(element.datetime);
-  console.log();
-});
+async function run() {
+  await apple.refreshNews();
+  //const news = apple.getNews();
+  news.forEach(element => {
+    console.log(element.headline)
+    console.log(element.summary);
+    console.log(element.datetime);
+    console.log();
+  });
 }
 //stockService.getQuoteNews(apple.getSymbol(), false, true);
 
@@ -44,7 +44,7 @@ let ethereum = new Crypto('ETH');
 
 
 //console.log(am);
-async function testCrypto(symbol){
+async function testCrypto(symbol) {
   let bitcoin = new Crypto(symbol);
   await bitcoin.refreshData();
   console.log(bitcoin.getPrice());
