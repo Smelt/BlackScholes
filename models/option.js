@@ -1,3 +1,5 @@
+const OptionService = require('../services/options.service');
+
 class Option {
 
     constructor(symbol, stockPrice, expiration){
@@ -5,6 +7,10 @@ class Option {
         this.expiration = expiration;
         this.stockPrice = stockPrice;       
     }
+
+    async refreshPrice(){
+        await OptionService.getOptionData(this);
+     }
 
     setCall(strike, price, iv ){
         this.call = {
