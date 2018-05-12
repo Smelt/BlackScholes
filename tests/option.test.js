@@ -3,17 +3,21 @@ const Option = require('../models/option');
 
 const optionService = require('../services/options.service');
 
-module.exports.test = async function(ticker, price, date){
-    console.log("Line 4 test");
-    let stock = new Stock(ticker); 
-    await stock.refreshPrice();
+module.exports.testOptionData = async function (ticker, date = '2018-05-18') {
     
-    console.log(JSON.stringify(stock));
-    
-    let option = new Option(stock.getSymbol(), stock.getPrice(), date);
-    option =  await optionService.getOptionData(option);
-    /*
-    console.log(option);
-    option.printSummary();
-    */
+    if (ticker) {
+        let stock = new Stock(ticker);
+        await stock.refreshPrice();
+        let option = new Option(stock.getSymbol(), stock.getPrice(), date);
+        await option.refreshPrice()
+        option.printSummary();
+    }
+    else {
+        const monthlyDate = '2018-05-18';
+        let apple = new Stock('aapl');
+        await apple.refreshPrice();
+        let appleOption = new Option(apple.getSymbol(), apple.getPrice(), monthlyDate);
+        await appleOption.refreshPrice();
+        appleOption.printSummary();
+    }
 }
