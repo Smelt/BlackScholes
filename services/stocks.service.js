@@ -23,13 +23,6 @@ function institutionalData(stockParam) {
                 beta: data.beta.raw
             }
             resolve(institution);
-            /*
-            stock.setHeldInstitutions(data.heldPercentInstitutions.raw);
-            stock.setSharesShort(data.shortRatio.raw);
-            stock.setBeta(data.beta.raw);
-            resolve(stock);
-           */
-
         })
     })
 }
